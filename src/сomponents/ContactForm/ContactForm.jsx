@@ -28,7 +28,7 @@ class ContactForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { contacts } = this.props;
-        if (contacts.find((items) => items.name === e.currentTarget.elements[0].value)) {
+        if (contacts.find(item => item.name.toLowerCase() === e.currentTarget.elements[0].value.toLowerCase() )) {
             this.setState(() => {
                 return {
                     error: true,
@@ -53,7 +53,6 @@ class ContactForm extends Component {
       render() {
           return (
               <div>
-                  {this.state.error ? 
         <CSSTransition
                     in={this.state.error}
                     appear={true}
@@ -62,7 +61,7 @@ class ContactForm extends Component {
                     unmountOnExit
                     >
           <Alert />
-        </CSSTransition> :
+        </CSSTransition> 
                       < form onSubmit={this.handleSubmit} >
                          <div className={s.form}>
                               <label className={s.label} htmlFor={this.nameInputId}>
@@ -88,7 +87,6 @@ class ContactForm extends Component {
                               <button className={s.button} type="submit">Add contact</button>
                           </div>
                       </form >
-                  }
                   </div>
                 
         );
